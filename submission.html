@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h2 class="text-center">Submitted Information</h2>
+            <table id="dataTable">
+                <!-- Data will be inserted here dynamically -->
+            </table>
+            <button onclick="goBack()" class="btn btn-primary">Back</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const formData = JSON.parse(localStorage.getItem("formData"));
+            if (formData) {
+                let tableContent = "";
+                for (let key in formData) {
+                    tableContent += `<tr><td><strong>${key.replace(/([A-Z])/g, ' $1')}:</strong></td><td>${formData[key]}</td></tr>`;
+                }
+                document.getElementById("dataTable").innerHTML = tableContent;
+            }
+        });
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
